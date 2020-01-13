@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Application.Common.Base
 {
-    public class BaseContext
+    public abstract class BaseContext
     {
         protected readonly IApplicationDBContext _dbContext;
         protected readonly IMapper _mapper;
