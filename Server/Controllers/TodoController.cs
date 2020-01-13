@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Server.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
     public class TodoController : ApiController
     {
+        public TodoController(IMediator mediator) : base(mediator)
+        {
+        }
 
         [HttpGet()]
         public async Task<IActionResult> GetAllTodos()
