@@ -10,14 +10,8 @@ namespace Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TodoController : ControllerBase
+    public class TodoController : ApiController
     {
-        private readonly IMediator _mediator;
-
-        public TodoController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
 
         [HttpGet()]
         public async Task<IActionResult> GetAllTodos()
