@@ -23,7 +23,10 @@ namespace Application.Item.Commands
 
             public Task<bool> Handle(CreateItemCommand request, CancellationToken cancellationToken)
             {
-                var item = new Todo();
+                var item = new Todo()
+                {
+                    Name = request.Name
+                };
 
                 _dbContext.Todos.Add(item);
                 var result = _dbContext.SaveChanges();

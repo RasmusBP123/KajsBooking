@@ -23,7 +23,6 @@ namespace Server
             Configuration = configuration;
         }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.RegisterApplication();
@@ -39,9 +38,7 @@ namespace Server
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

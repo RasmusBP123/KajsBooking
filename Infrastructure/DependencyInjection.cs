@@ -10,23 +10,13 @@ namespace Infrastructure
     {
         public static IServiceCollection RegisterInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDBContext>(options => 
+            services.AddDbContext<ApplicationDBContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(ApplicationDBContext).Assembly.FullName)));
 
             services.AddScoped<IApplicationDBContext>(provider => provider.GetService<ApplicationDBContext>());
 
             return services;
-        }
-
-        private static void RegisterCommands(this IServiceCollection services)
-        {
-
-        }
-
-        private static void RegisterQueries(this IServiceCollection services)
-        {
-
         }
     }
 }

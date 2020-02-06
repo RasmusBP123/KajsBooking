@@ -11,6 +11,12 @@ namespace Application.Common.Interfaces
     public interface IApplicationDBContext
     {
         DbSet<Todo> Todos { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<BookingType> BookingTypes { get; set; }
+        public DbSet<Calendar> Calendars { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Timeslot> Timeslots { get; set; }
+        public DbSet<Team> Teams { get; set; }
         bool SaveChanges();
     }
 }

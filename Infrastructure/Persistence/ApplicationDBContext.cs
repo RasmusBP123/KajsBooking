@@ -1,12 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
@@ -17,7 +12,12 @@ namespace Infrastructure.Persistence
         {}
 
         public DbSet<Todo> Todos { get; set; }
-
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Calendar> Calendars { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<BookingType> BookingTypes { get; set; }
+        public DbSet<Timeslot> Timeslots { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
