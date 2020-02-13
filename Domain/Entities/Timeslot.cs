@@ -12,6 +12,8 @@ namespace Domain.Entities
         public DateTime From { get; set; }
         public DateTime To { get; set; }
         public List<Booking> Bookings { get; set; } = new List<Booking>();
+        public Calendar Calendar { get; set; }
+        public Teacher Teacher { get; set; }
 
         public void CreateBooking(Booking booking)
         {

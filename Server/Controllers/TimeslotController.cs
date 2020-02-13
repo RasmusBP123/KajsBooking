@@ -24,7 +24,8 @@ namespace Server.Controllers
         [Route("create")]
         public async Task<IActionResult> CreateTimeSlot(Guid teacherId)
         {
-            await _mediator.Send(new CreateTimeslotCommand(new Guid("5f138154-2c65-4be8-89f6-34c8b1d5cb87"), "Bla bla", new DateTime(2020, 02, 06), new DateTime(2020, 02, 06)));
+            await _mediator.Send(new CreateTimeslotCommand(new Guid("5f138154-2c65-4be8-89f6-34c8b1d5cb87"), new Guid("7d4a08f7-8a38-48f0-953f-c180d7577f95")
+                                                           ,"Bla bla", new DateTime(2020, 02, 06), new DateTime(2020, 02, 06)));
             return Ok();
         }
     }

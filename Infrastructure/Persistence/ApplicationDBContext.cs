@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
+using Domain.Entities.Joint;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -18,6 +19,8 @@ namespace Infrastructure.Persistence
         public DbSet<BookingType> BookingTypes { get; set; }
         public DbSet<Timeslot> Timeslots { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<TeacherCalendar> TeacherCalendar { get; set; }
+        public DbSet<StudentTeam> StudentTeam { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

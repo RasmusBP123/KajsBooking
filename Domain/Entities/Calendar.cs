@@ -9,12 +9,12 @@ namespace Domain.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public ICollection<TeacherCalendar> Teachers { get; set; }
+        public ICollection<TeacherCalendar> Teachers { get; set; } = new List<TeacherCalendar>();
         public List<Timeslot> Timeslots { get; set; } = new List<Timeslot>();
 
-        public void CreateTimeSlot(Timeslot timeslot)
+        public void AddTeacher(TeacherCalendar teacher)
         {
-            this.Timeslots.Add(timeslot);
+            Teachers.Add(teacher);
         }
     }
 }

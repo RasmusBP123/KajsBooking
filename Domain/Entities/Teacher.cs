@@ -12,6 +12,12 @@ namespace Domain.Entities
         public ICollection<TeacherCalendar> Calendars { get; set; }
         public List<Timeslot> Timeslots { get; set; } = new List<Timeslot>();
 
+        public Teacher(Guid id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
         public void CreateTimeSlot(Timeslot timeslot)
         {
             this.Timeslots.Add(timeslot);

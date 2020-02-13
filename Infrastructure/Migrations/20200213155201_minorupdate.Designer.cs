@@ -4,14 +4,16 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200213155201_minorupdate")]
+    partial class minorupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -210,7 +212,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("b15bd5d8-b161-4b0e-8255-85b02e8e897d"),
-                            Created = new DateTime(2020, 2, 13, 17, 26, 49, 30, DateTimeKind.Local).AddTicks(2861),
+                            Created = new DateTime(2020, 2, 13, 16, 52, 0, 419, DateTimeKind.Local).AddTicks(8444),
                             CreatedBy = "Me",
                             Name = "Do Dished"
                         });
@@ -270,7 +272,7 @@ namespace Infrastructure.Migrations
                         .WithMany("Timeslots")
                         .HasForeignKey("CalendarId");
 
-                    b.HasOne("Domain.Entities.Teacher", "Teacher")
+                    b.HasOne("Domain.Entities.Teacher", null)
                         .WithMany("Timeslots")
                         .HasForeignKey("TeacherId");
                 });
