@@ -5,11 +5,16 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class Calendar : AuditableEntity
+    public class Calendar
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public ICollection<TeacherCalendar> Teachers { get; set; }
-        public ICollection<Timeslot> Timeslots { get; set; }
+        public List<Timeslot> Timeslots { get; set; } = new List<Timeslot>();
+
+        public void CreateTimeSlot(Timeslot timeslot)
+        {
+            this.Timeslots.Add(timeslot);
+        }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using Application.Common.Mappings;
+using Application.UseCases.CreateBooking;
 using Application.UseCases.CreateTimeslot;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Reflection;
-using static Application.UseCases.CreateTimeslot.CreateTimeSlotCommand;
 
 namespace Application
 {
@@ -40,7 +40,8 @@ namespace Application
         }
         private static void RegisterCommands(this IServiceCollection services)
         {
-            services.AddScoped<IRequestHandler<CreateTimeSlotCommand, bool>, CreateTimeSlotHandler>();
+            services.AddScoped<IRequestHandler<CreateTimeslotCommand, bool>, CreateTimeSlotHandler>();
+            services.AddScoped<IRequestHandler<CreateBookingCommand, bool>, CreateBookingHandler>();
         }
 
         private static void RegisterQueries(this IServiceCollection services)

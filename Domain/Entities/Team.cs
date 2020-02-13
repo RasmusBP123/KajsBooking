@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class Team : AuditableEntity
+    public class Team
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
