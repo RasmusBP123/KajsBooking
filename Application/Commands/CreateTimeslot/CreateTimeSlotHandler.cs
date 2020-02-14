@@ -19,7 +19,6 @@ namespace Application.UseCases.CreateTimeslot
 
         public Task<bool> Handle(CreateTimeslotCommand request, CancellationToken cancellationToken)
         {
-
             var teacher = _dbContext.Teachers.FirstOrDefault(t => t.Id == request.TeacherId);
             var calendar = _dbContext.Calendars.FirstOrDefault(cal => cal.Id == request.CalendarId);
             var timeslotsWhereTeacherIsPresent = _dbContext.Timeslots.Where(timeslot => timeslot.Teacher.Id == teacher.Id).ToList();

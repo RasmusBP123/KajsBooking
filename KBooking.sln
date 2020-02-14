@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{9A82922A-B0F7-48AF-8C7E-238B2AC4FACE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService", "AccountService\AccountService.csproj", "{87E2F540-A54D-4951-8981-3DA8CA18835B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService", "AccountService\AccountService.csproj", "{87E2F540-A54D-4951-8981-3DA8CA18835B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
