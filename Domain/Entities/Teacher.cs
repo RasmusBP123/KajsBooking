@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Domain.Entities
 {
@@ -15,6 +14,8 @@ namespace Domain.Entities
         public string Name { get; set; }
         public virtual List<TeacherCalendar> Calendars { get; set; }
         public virtual List<Timeslot> Timeslots { get; set; } = new List<Timeslot>();
+        public virtual ApplicationUser User { get; set; }
+
         public Teacher(Guid id, string name)
         {
             Id = id;

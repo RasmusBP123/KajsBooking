@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Infrastructure.Identity
 {
-    public class ApplicationUser : IdentityUser<Guid>
-    {
-    }
+    //public class ApplicationUser : IdentityUser<Guid>
+    //{
+    //}
 }

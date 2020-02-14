@@ -1,16 +1,12 @@
 ﻿using Domain.Entities;
 using Domain.Entities.Joint;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Application.Common.Interfaces
 {
     public interface IApplicationDBContext
     {
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<BookingType> BookingTypes { get; set; }
         public DbSet<Calendar> Calendars { get; set; }

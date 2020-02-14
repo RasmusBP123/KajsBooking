@@ -1,9 +1,7 @@
-﻿using Domain.Common;
-using Domain.Entities.Joint;
+﻿using Domain.Entities.Joint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Domain.Entities
 {
@@ -14,7 +12,7 @@ namespace Domain.Entities
         public virtual List<StudentTeam> Teams { get; set; }
         public virtual List<Booking> Bookings { get; set; }
 
-
+        public virtual ApplicationUser User { get; set; }
         public bool IsBookingLimitReached()
         {
             var result = Bookings.Where(b => b.To > DateTime.Now).Count() >= 2;

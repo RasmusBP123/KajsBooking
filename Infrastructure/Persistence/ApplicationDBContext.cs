@@ -15,6 +15,7 @@ namespace Infrastructure.Persistence
         public ApplicationDBContext(DbContextOptions options) : base(options)
         {}
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Todo> Todos { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Calendar> Calendars { get; set; }
