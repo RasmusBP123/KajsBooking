@@ -21,6 +21,7 @@ namespace Infrastructure.Persistence
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeacherCalendar> TeacherCalendar { get; set; }
         public DbSet<StudentTeam> StudentTeam { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

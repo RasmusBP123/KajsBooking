@@ -27,9 +27,9 @@ namespace Application.UseCases.CreateCalendar
                 Name = request.Name,
             };
 
-            var teacherCalendar = new TeacherCalendar { TeacherId = teacher.Id, CalendarId = calendar.Id };
+            var teacherCalendars = new TeacherCalendar { TeacherId = teacher.Id, CalendarId = calendar.Id };
 
-            calendar.AddTeacher(teacherCalendar);
+            calendar.AddTeacher(teacherCalendars);
             _dbContext.Calendars.Add(calendar);
             return Task.FromResult(_dbContext.SaveChanges());
         }

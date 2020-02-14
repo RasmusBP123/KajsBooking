@@ -7,6 +7,9 @@ namespace Domain.Entities
 {
     public class Teacher
     {
+        public Teacher()
+        { }
+
         public Guid Id { get; set; }
         public string Name { get; set; }
         public ICollection<TeacherCalendar> Calendars { get; set; }

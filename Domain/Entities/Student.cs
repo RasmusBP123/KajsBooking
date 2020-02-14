@@ -11,5 +11,6 @@ namespace Domain.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public ICollection<StudentTeam> Teams { get; set; }
+        public List<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

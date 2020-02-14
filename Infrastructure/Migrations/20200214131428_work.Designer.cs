@@ -4,14 +4,16 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200214131428_work")]
+    partial class work
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,7 +222,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("b15bd5d8-b161-4b0e-8255-85b02e8e897d"),
-                            Created = new DateTime(2020, 2, 14, 14, 17, 55, 981, DateTimeKind.Local).AddTicks(8023),
+                            Created = new DateTime(2020, 2, 14, 14, 14, 27, 831, DateTimeKind.Local).AddTicks(8122),
                             CreatedBy = "Me",
                             Name = "Do Dished"
                         });

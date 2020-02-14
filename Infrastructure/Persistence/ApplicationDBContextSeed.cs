@@ -12,13 +12,9 @@ namespace Infrastructure.Persistence
     public static class ApplicationDBContextSeed
     {
 
-       public static async Task CreateUser(UserManager<ApplicationUser> manager)
+       public static async Task CreateUser()
         {
-            var defaultUser = new ApplicationUser() { UserName = "Admin", Email = "admin@hotmail.com" };
-            if (manager.Users.All(user => user.Id != defaultUser.Id))
-            {
-                await manager.CreateAsync(defaultUser, "Horse123!");
-            }
+
        } 
     }
 }

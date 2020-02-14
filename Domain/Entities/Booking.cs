@@ -8,5 +8,6 @@ namespace Domain.Entities
         public DateTime From { get; set; }
         public DateTime To { get; set; }
         public BookingType Type { get; set; }
+        public Student Student { get; set; }
     }
 }

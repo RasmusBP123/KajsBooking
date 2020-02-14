@@ -1,5 +1,8 @@
-﻿using Application.Common.Mappings;
+﻿using Application.CommandUseCases.AttachTeachersToCalendar;
+using Application.Common.Mappings;
+using Application.UseCases.AttachStudentToTeam;
 using Application.UseCases.CreateBooking;
+using Application.UseCases.CreateCalendar;
 using Application.UseCases.CreateTimeslot;
 using AutoMapper;
 using MediatR;
@@ -42,6 +45,9 @@ namespace Application
         {
             services.AddScoped<IRequestHandler<CreateTimeslotCommand, bool>, CreateTimeSlotHandler>();
             services.AddScoped<IRequestHandler<CreateBookingCommand, bool>, CreateBookingHandler>();
+            services.AddScoped<IRequestHandler<CreateCalendarCommand, bool>, CreateCalendarHandler>();
+            services.AddScoped<IRequestHandler<AttachStudentToTeamCommand, bool>, AttachStudentToTeamHandler>();
+            services.AddScoped<IRequestHandler<AttachTeachersToCalendarCommand, bool>, AttachTeachersToCalendarHandler>();
         }
 
         private static void RegisterQueries(this IServiceCollection services)
