@@ -9,9 +9,9 @@ namespace Domain.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public List<TeacherCalendar> Teachers { get; set; } = new List<TeacherCalendar>();
-        public List<Timeslot> Timeslots { get; set; } = new List<Timeslot>();
-        public List<Team> Teams { get; set; }
+        public virtual List<TeacherCalendar> Teachers { get; set; } = new List<TeacherCalendar>();
+        public virtual List<Timeslot> Timeslots { get; set; } = new List<Timeslot>();
+        public virtual List<Team> Teams { get; set; }
 
         public void AddTeacher(TeacherCalendar teacher)
         {

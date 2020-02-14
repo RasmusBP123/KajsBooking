@@ -8,12 +8,14 @@ namespace Application.UseCases.CreateTeam
 {
     public class CreateTeamCommand : IRequest<bool>
     {
-        public string Name { get; set; }
+        public string TeamName { get; set; }
+        public string CalendarName { get; set; }
         public Guid TeacherId { get; set; }
 
-        public CreateTeamCommand(string name, Guid teacherId)
+        public CreateTeamCommand(string teamName, string calendarName, Guid teacherId)
         {
-            Name = name;
+            TeamName = teamName;
+            CalendarName = calendarName;
             TeacherId = teacherId;
         }
     }

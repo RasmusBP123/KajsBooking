@@ -26,7 +26,7 @@ namespace Application.UseCases.CreateTeam
 
             var team = new Team
             {
-                Name = request.Name,
+                Name = request.TeamName,
                 Teacher = teacher
             };
 

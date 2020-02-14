@@ -19,7 +19,7 @@ namespace Server.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateTeam()
         {
-            await _mediator.Send(new CreateTeamCommand("Programming 101", new Guid("5f138154-2c65-4be8-89f6-34c8b1d5cb87")));
+            await _mediator.Send(new CreateTeamCommand("Programming 101", "OPS205WS",  new Guid("5f138154-2c65-4be8-89f6-34c8b1d5cb87")));
             return Ok();
         }
 

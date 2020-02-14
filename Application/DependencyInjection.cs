@@ -1,10 +1,13 @@
 ﻿using Application.CommandUseCases.AttachTeachersToCalendar;
 using Application.Common.Mappings;
+using Application.Dtos;
+using Application.QueryUseCases.GetCalendarForTeam;
 using Application.UseCases.AttachStudentToTeam;
 using Application.UseCases.CreateBooking;
 using Application.UseCases.CreateCalendar;
 using Application.UseCases.CreateTimeslot;
 using AutoMapper;
+using Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -20,6 +23,7 @@ namespace Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.RegisterCommands();
             services.RegisterQueries();
+            services.AddAutoMapperSetup();
 
             return services;
         }
@@ -41,6 +45,7 @@ namespace Application
             IEnumerable<Profile> profiles = new List<Profile>() { new DomainToViewModelProfile(), new ViewModelToDomainProfile() };
             services.AddAutoMapper(config => config.AddProfiles(profiles), assemblies);
         }
+
         private static void RegisterCommands(this IServiceCollection services)
         {
             services.AddScoped<IRequestHandler<CreateTimeslotCommand, bool>, CreateTimeSlotHandler>();
@@ -52,7 +57,7 @@ namespace Application
 
         private static void RegisterQueries(this IServiceCollection services)
         {
-
+            services.AddScoped<IRequestHandler<GetCalendarForTeamQuery, CalendarDTO>, GetCalendarForTeamHandler>();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.CommandUseCases.AttachTeachersToCalendar;
+using Application.QueryUseCases.GetCalendarForTeam;
 using Application.UseCases.CreateCalendar;
 using Domain.Entities;
 using MediatR;
@@ -14,6 +15,13 @@ namespace Server.Controllers
     {
         public CalendarController(IMediator mediator) : base(mediator)
         {
+        }
+
+        [HttpGet("{calendarId}")]
+        public async Task<IActionResult> GetCalendarForTeam([FromRoute] Guid calendarId)
+        {
+            var result = await _mediator.Send(new GetCalendarForTeamQuery(calendarId));
+            return Ok(result);
         }
 
         [HttpPost("create")]

@@ -3,6 +3,7 @@ using Application.Common.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,32 @@ namespace Application.UseCases.CreateBooking
 
         public Task<bool> Handle(CreateBookingCommand request, CancellationToken cancellationToken)
         {
+            var duration = request.To - request.From;
             var booking = new Booking
             {
                 From = request.From,
-                To = request.To
+                To = request.To,
+                Type = new BookingType
+                {
+                    Duration = duration
+                }
             };
 
-            var timeslot = _dbContext.Timeslots.FirstOrDefault(timeslot => timeslot.Id == request.TimeslotId);
-            timeslot.CreateBooking(booking);
+            var timeslot = _dbContext.Timeslots.Include(t => t.Bookings).FirstOrDefault(timeslot => timeslot.Id == request.TimeslotId);
 
-            return Task.FromResult(_dbContext.SaveChanges());
+            if(timeslot.IsBookingsOverLapping(booking))
+            {
+                timeslot.CreateBooking(booking);
+                return Task.FromResult(_dbContext.SaveChanges());
+            }
+
+            return Task.FromResult(false);
+        }
+
+        public bool IsBookingsOverLapping(Timeslot timeslot, Booking newBooking)
+        {
+            var result = timeslot.Bookings.All(existingBooking => newBooking.From > existingBooking.To || newBooking.To < existingBooking.From);
+            return result;
         }
     }
 }
