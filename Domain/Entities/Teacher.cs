@@ -15,7 +15,6 @@ namespace Domain.Entities
         public string Name { get; set; }
         public virtual List<TeacherCalendar> Calendars { get; set; }
         public virtual List<Timeslot> Timeslots { get; set; } = new List<Timeslot>();
-
         public Teacher(Guid id, string name)
         {
             Id = id;

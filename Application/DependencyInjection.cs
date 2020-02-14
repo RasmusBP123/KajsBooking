@@ -7,7 +7,6 @@ using Application.UseCases.CreateBooking;
 using Application.UseCases.CreateCalendar;
 using Application.UseCases.CreateTimeslot;
 using AutoMapper;
-using Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;

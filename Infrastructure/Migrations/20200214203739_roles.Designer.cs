@@ -4,14 +4,16 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200214203739_roles")]
+    partial class roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -272,10 +274,45 @@ namespace Infrastructure.Migrations
                             Email = "adminDev@hotmail.coM",
                             NormalizedEmail = "ADMINDEV@HOTMAIL.COM",
                             NormalizedUserName = "ADMINDEV@HOTMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPWZ/Ipl/mHrGBbxHqUT5BJ/p/6V4EISGA04IQBKy2jb7CXEJo+nzw2qSEQWOadC+A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPRns0oTD754Ri6Lw3jp3xiLltiToqMO17mDevWf8eEiICV9O0t9X1QwWITQig71Hw==",
                             PhoneNumber = "28929173",
                             SecurityStamp = "f4572cb1-6f71-46fd-8260-0baea7287367",
                             UserName = "Rasmus Bak Petersen"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "2184a200-270a-4661-90bf-00d2cc7ee2a4",
+                            ConcurrencyStamp = "d921c629-b6fd-4fe4-9668-d069698dbbcf",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "5528e66f-ec78-4e9c-9cfd-f3130a654baa",
+                            ConcurrencyStamp = "61d3eb78-9bd4-4f1d-8cbc-70f1a6fd952f",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
                         });
                 });
 
@@ -305,22 +342,6 @@ namespace Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("dbb59868-4c1b-4afb-8bc7-b49552857bf4"),
-                            ConcurrencyStamp = "220f9974-c120-4341-8503-f04e0d876150",
-                            Name = "Student",
-                            NormalizedName = "STUDENT"
-                        },
-                        new
-                        {
-                            Id = new Guid("3b1dd839-7407-4041-9b67-20f3b5bd3e29"),
-                            ConcurrencyStamp = "925656dd-3dc6-42eb-b0c8-37c1c5718cbf",
-                            Name = "Teacher",
-                            NormalizedName = "TEACHER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

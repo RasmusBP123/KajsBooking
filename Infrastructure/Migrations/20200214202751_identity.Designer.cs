@@ -4,14 +4,16 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200214202751_identity")]
+    partial class identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,6 +217,15 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Todos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b15bd5d8-b161-4b0e-8255-85b02e8e897d"),
+                            Created = new DateTime(2020, 2, 14, 21, 27, 50, 280, DateTimeKind.Local).AddTicks(1637),
+                            CreatedBy = "Me",
+                            Name = "Do Dished"
+                        });
                 });
 
             modelBuilder.Entity("Infrastructure.Identity.ApplicationUser", b =>
@@ -272,10 +283,44 @@ namespace Infrastructure.Migrations
                             Email = "adminDev@hotmail.coM",
                             NormalizedEmail = "ADMINDEV@HOTMAIL.COM",
                             NormalizedUserName = "ADMINDEV@HOTMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPWZ/Ipl/mHrGBbxHqUT5BJ/p/6V4EISGA04IQBKy2jb7CXEJo+nzw2qSEQWOadC+A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAE/RcW6NhsD1ISJxt2e4VU0EaY2OYAqwvl0j19pm8FDzYI/zU6ImLb5EEKruVGJ8A==",
                             PhoneNumber = "28929173",
-                            SecurityStamp = "f4572cb1-6f71-46fd-8260-0baea7287367",
-                            UserName = "Rasmus Bak Petersen"
+                            SecurityStamp = "f4572cb1-6f71-46fd-8260-0baea7287367"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "c22c6fe2-9d2a-4f14-bfb9-3ea1faec803c",
+                            ConcurrencyStamp = "5eecc01a-c6ce-4616-af99-26d3b0ae6e2a",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "9701f2b5-cd53-442b-b911-622c4c1b22c4",
+                            ConcurrencyStamp = "e7cbc5b1-b0ba-4f4f-a83f-d9be166f0387",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
                         });
                 });
 
@@ -305,22 +350,6 @@ namespace Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("dbb59868-4c1b-4afb-8bc7-b49552857bf4"),
-                            ConcurrencyStamp = "220f9974-c120-4341-8503-f04e0d876150",
-                            Name = "Student",
-                            NormalizedName = "STUDENT"
-                        },
-                        new
-                        {
-                            Id = new Guid("3b1dd839-7407-4041-9b67-20f3b5bd3e29"),
-                            ConcurrencyStamp = "925656dd-3dc6-42eb-b0c8-37c1c5718cbf",
-                            Name = "Teacher",
-                            NormalizedName = "TEACHER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

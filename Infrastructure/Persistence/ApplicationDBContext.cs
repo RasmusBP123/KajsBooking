@@ -1,14 +1,17 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Entities.Joint;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Reflection;
 
 namespace Infrastructure.Persistence
 {
-    public class ApplicationDBContext : DbContext,  IApplicationDBContext
+    public class ApplicationDBContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>,  IApplicationDBContext
     {
-
         public ApplicationDBContext(DbContextOptions options) : base(options)
         {}
 

@@ -6,7 +6,9 @@ using Application.CommandUseCases.AttachTeachersToCalendar;
 using Application.QueryUseCases.GetCalendarForTeam;
 using Application.UseCases.CreateCalendar;
 using Domain.Entities;
+using Infrastructure.Identity;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Server.Controllers
@@ -25,6 +27,8 @@ namespace Server.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize(Policy = Policies.IsTeacher)]
+
         public async Task<IActionResult> CreateCalendar()
         {
             await _mediator.Send(new CreateCalendarCommand("My first calendar", new Guid("5f138154-2c65-4be8-89f6-34c8b1d5cb87")));
@@ -32,6 +36,7 @@ namespace Server.Controllers
         }
 
         [HttpPost("{calendarId}/teachers")]
+        [Authorize(Policy = Policies.IsTeacher)]
         public async Task<IActionResult> AttachTeachersToCalendar([FromRoute] Guid calendarId)
         {
             var teachers = new List<Teacher>()

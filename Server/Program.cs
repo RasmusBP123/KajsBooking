@@ -21,15 +21,12 @@ namespace Server
                 {
                     var context = services.GetRequiredService<ApplicationDBContext>();
                     context.Database.Migrate();
-
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             }
-
             host.Run();
         }
 

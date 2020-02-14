@@ -1,5 +1,4 @@
 ﻿using Application.Dtos;
-using Application.Item.Queries.GetTodos;
 using AutoMapper;
 using Domain.Entities;
 using System.Linq;
@@ -17,7 +16,6 @@ namespace Application.Common.Mappings
             CreateMap<Teacher, TeacherDTO>();
             CreateMap<Team, TeamDTO>();
             CreateMap<Timeslot, TimeslotDTO>();
-            CreateMap<Todo, TodoDto>();
         }
     }
 }

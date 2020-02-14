@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Application.Common.Interfaces;
+using Infrastructure.Identity;
+using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure
 {
@@ -13,6 +16,17 @@ namespace Infrastructure
             services.AddDbContext<ApplicationDBContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(ApplicationDBContext).Assembly.FullName)));
+
+            services.AddDefaultIdentity<ApplicationUser>()
+                    .AddRoles<IdentityRole<Guid>>()
+                    .AddEntityFrameworkStores<ApplicationDBContext>()
+                    .AddDefaultTokenProviders();
+
+            services.AddAuthorization(config =>
+            {
+                config.AddPolicy(Policies.IsTeacher, Policies.IsTeacherPolicy());
+                config.AddPolicy(Policies.IsStudent, Policies.IsStudentPolicy());
+            });
 
             services.AddScoped<IApplicationDBContext>(provider => provider.GetService<ApplicationDBContext>());
 
