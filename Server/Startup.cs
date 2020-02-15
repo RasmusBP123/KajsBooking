@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace Server
 {
@@ -54,6 +55,11 @@ namespace Server
                     };
                 });
 
+            services.AddSwaggerGen(setup =>
+            {
+                setup.SwaggerDoc("v1", new OpenApiInfo() { Title = "Booking System", Version = "Version 1" });
+            });
+
             services.AddControllers();            
         }
 
@@ -64,8 +70,16 @@ namespace Server
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+            {
+                config.SwaggerEndpoint("swagger/v1/swagger.json", "Event Manager v1");
+                config.RoutePrefix = string.Empty;
+            });
+
             app.UseHttpsRedirection();
             app.UseRouting();
+
 
             app.UseAuthentication();
             app.UseAuthorization();

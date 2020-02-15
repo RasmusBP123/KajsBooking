@@ -1,6 +1,7 @@
 ﻿using Application.CommandUseCases.AttachTeachersToCalendar;
 using Application.Common.Mappings;
 using Application.Dtos;
+using Application.Queries.GetAllCalendars;
 using Application.QueryUseCases.GetCalendarForTeam;
 using Application.UseCases.AttachStudentToTeam;
 using Application.UseCases.CreateBooking;
@@ -57,6 +58,7 @@ namespace Application
         private static void RegisterQueries(this IServiceCollection services)
         {
             services.AddScoped<IRequestHandler<GetCalendarForTeamQuery, CalendarDTO>, GetCalendarForTeamHandler>();
+            services.AddScoped<IRequestHandler<GetAllCalendarsQuery, List<CalendarDTO>>, GetAllCalendarsHandler>();
         }
     }
 }
