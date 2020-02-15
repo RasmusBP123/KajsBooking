@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore;
+﻿using Infrastructure.Persistence;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace TClient.Server
 {
@@ -8,7 +12,24 @@ namespace TClient.Server
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+           var host = BuildWebHost(args);
+
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    var context = services.GetRequiredService<ApplicationDBContext>();
+                    context.Database.Migrate();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            host.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

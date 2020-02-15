@@ -36,31 +36,30 @@ namespace TClient.Server
             services.RegisterAccountServices();
             services.RegisterInfrastructure(Configuration);
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = Configuration["JwtIssuer"],
+                            ValidAudience = Configuration["JwtAudience"],
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSecurityKey"]))
+                        };
+                    });
+
             services.AddControllersWithViews()
                  .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
-            //JWT
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = Configuration["JwtIssuer"],
-                        ValidAudience = Configuration["JwtAudience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSecurityKey"]))
-                    };
-                });
-
-            services.AddSwaggerGen(setup =>
-            {
-                setup.SwaggerDoc("v1", new OpenApiInfo() { Title = "Booking System", Version = "Version 1" });
-            });
+            //services.AddSwaggerGen(setup =>
+            //{
+            //    setup.SwaggerDoc("v1", new OpenApiInfo() { Title = "Booking System", Version = "Version 1" });
+            //});
 
             services.AddControllers();
         }
@@ -76,19 +75,22 @@ namespace TClient.Server
                 app.UseBlazorDebugging();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(config =>
-            {
-                config.SwaggerEndpoint("swagger/v1/swagger.json", "Event Manager v1");
-                config.RoutePrefix = string.Empty;
-            });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(config =>
+            //{
+            //    config.SwaggerEndpoint("swagger/v1/swagger.json", "Event Manager v1");
+            //    config.RoutePrefix = string.Empty;
+            //});
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseAuthentication();
-            app.UseRouting();
 
             app.UseClientSideBlazorFiles<Client.Startup>();
+
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

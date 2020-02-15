@@ -1,7 +1,34 @@
-﻿@page "/"
+﻿@inject HttpClient HttpClient
+@using Syncfusion.EJ2.Blazor.Schedule
 
-<h1>Hello, world!</h1>
+@page "/"
+<UpperCalendar CalendarName="@Calendar.Name" Teachers="@Calendar.Teachers"/>
+<EjsSchedule TValue="TimeslotDTO" Height="600px" SelectedDate="@(new DateTime(2020, 2, 14))">
+    <ScheduleEventSettings DataSource="@DataSource"> </ScheduleEventSettings>
+</EjsSchedule>
 
-Welcome to your new app.
+@code{
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    private CalendarDTO Calendar = new CalendarDTO();
+    private List<TimeslotDTO> TimeSlots = new List<TimeslotDTO>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Calendar.Teachers = new List<TeacherDTO>();
+        Calendar = await HttpClient.GetJsonAsync<CalendarDTO>("api/calendar/7d4a08f7-8a38-48f0-953f-c180d7577f95");
+    }
+
+    List<AppointmentData> DataSource = new List<AppointmentData>
+    {
+        new AppointmentData { Id = 1, Subject = "Paris", StartTime = new DateTime(2020, 2, 13, 10, 0, 0) , EndTime = new DateTime(2020, 2, 13, 12, 0, 0) },
+        new AppointmentData { Id = 2, Subject = "Germany", StartTime = new DateTime(2020, 2, 15, 10, 0, 0) , EndTime = new DateTime(2020, 2, 15, 12, 0, 0) }
+    };
+
+    public class AppointmentData
+    {
+        public int Id { get; set; }
+        public string Subject { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+    }
+}

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Syncfusion.EJ2.Blazor;
 
 namespace TClient.Client
 {
@@ -7,6 +8,7 @@ namespace TClient.Client
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSyncfusionBlazor();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

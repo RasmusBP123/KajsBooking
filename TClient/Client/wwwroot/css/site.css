@@ -133,3 +133,9 @@ app {
         display: block;
     }
 }
+
+
+.my-flex{
+    display:flex;
+    justify-content: space-between;
+}
