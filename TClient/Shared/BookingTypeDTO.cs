@@ -6,6 +6,6 @@ namespace TClient.Shared
 {
     public class BookingTypeDTO
     {
-        public TimeSpan Duration { get; set; }
+        public string Duration { get; set; }
     }
 }
