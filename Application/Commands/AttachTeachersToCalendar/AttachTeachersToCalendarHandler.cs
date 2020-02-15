@@ -24,7 +24,6 @@ namespace Application.CommandUseCases.AttachTeachersToCalendar
             var teacherCalendars = request.Teachers.Select(tc => new TeacherCalendar { TeacherId = tc.Id, CalendarId = calendar.Id });
 
             calendar.AddTeachers(teacherCalendars);
-
             return Task.FromResult(_dbContext.SaveChanges());
         }
     }

@@ -1,0 +1,23 @@
+﻿@inject HttpClient client
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+    private CalendarDTO mainCalendar = new CalendarDTO();
+
+    protected override async Task OnInitializedAsync()
+    {
+        mainCalendar = await client.GetJsonAsync<CalendarDTO>("api/calendar/7d4a08f7-8a38-48f0-953f-c180d7577f95");
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

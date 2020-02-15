@@ -75,8 +75,8 @@ namespace Tests
                 To = new DateTime(2020, 02, 12, 15, 00, 00)
             };
 
-            var bookingIsPossible = timeslot.IsBookingsOverLapping(bookingWhichISPossible);
-            var bookingNOTPossible = timeslot.IsBookingsOverLapping(bookingWhichNOTPossible);
+            var bookingIsPossible = timeslot.IsBookingPossible(bookingWhichISPossible);
+            var bookingNOTPossible = timeslot.IsBookingPossible(bookingWhichNOTPossible);
 
             Assert.True(bookingIsPossible);
             Assert.False(bookingNOTPossible);

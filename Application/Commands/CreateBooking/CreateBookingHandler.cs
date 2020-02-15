@@ -31,7 +31,7 @@ namespace Application.UseCases.CreateBooking
 
             var timeslot = _dbContext.Timeslots.Include(t => t.Bookings).FirstOrDefault(timeslot => timeslot.Id == request.TimeslotId);
 
-            if(timeslot.IsBookingsOverLapping(booking))
+            if(timeslot.IsBookingPossible(booking))
             {
                 timeslot.CreateBooking(booking);
                 return Task.FromResult(_dbContext.SaveChanges());

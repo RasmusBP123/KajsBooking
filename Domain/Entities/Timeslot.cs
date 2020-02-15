@@ -16,12 +16,9 @@ namespace Domain.Entities
         public virtual Calendar Calendar { get; set; }
         public virtual Teacher Teacher { get; set; }
 
-        public void CreateBooking(Booking booking)
-        {
-            this.Bookings.Add(booking);
-        }
+        public void CreateBooking(Booking booking) => Bookings.Add(booking);
 
-        public bool IsBookingsOverLapping(Booking newBooking)
+        public bool IsBookingPossible(Booking newBooking)
         {
             var result = Bookings.All(existingBooking => newBooking.From >= existingBooking.To || newBooking.To <= existingBooking.From);
             return result;
