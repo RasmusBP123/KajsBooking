@@ -54,8 +54,8 @@ namespace Server.Controllers
                     Id = new Guid("8de6d47f-9960-4bc2-adfd-7d1b02c836ba"),
                     Name = "Simon"
                 },
-
             };
+
             await _mediator.Send(new AttachTeachersToCalendarCommand(calendarId, teachers));
             return Ok();
         }

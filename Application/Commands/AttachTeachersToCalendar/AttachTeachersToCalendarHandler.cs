@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.CommandUseCases.AttachTeachersToCalendar
 {
-    public class AttachTeachersToCalendarHandler : BaseContext, IRequestHandler<AttachTeachersToCalendarCommand, bool>
+    internal class AttachTeachersToCalendarHandler : BaseContext, IRequestHandler<AttachTeachersToCalendarCommand, bool>
     {
         public AttachTeachersToCalendarHandler(IApplicationDBContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
