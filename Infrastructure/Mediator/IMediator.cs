@@ -10,6 +10,6 @@ namespace Infrastructure.Mediator
     {
         Task SendAsync<TMessage>(TMessage message, CancellationToken token = default);
         Task<TResult> QueryAsync<TMessage, TResult>(TMessage message, CancellationToken token = default);
-        Task<TResult> PublishAsync<TMessage, TResult>(TMessage @event, CancellationToken token = default);
+        Task PublishAsync<TEvent>(TEvent message, CancellationToken cancellationToken = default);
     }
 }

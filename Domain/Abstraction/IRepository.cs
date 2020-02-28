@@ -9,6 +9,6 @@ namespace Domain.Abstraction
     public interface IRepository<T, TKey> where T: AggregateRoot<TKey>
     {
         Task Save(T aggregate, CancellationToken token);
-        Task Load(TKey id, CancellationToken token);
+        Task<T> Load(TKey id, CancellationToken token);
     }
 }

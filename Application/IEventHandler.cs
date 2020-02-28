@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-    public interface IEventHandler<in TEvent, TResult>
+    public interface IEventHandler<in TEvent>
     {
-        Task<TResult> Handle(TEvent @event, CancellationToken token);
+        Task Handle(TEvent @event, CancellationToken cancellationToken);
     }
 }

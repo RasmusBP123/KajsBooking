@@ -24,18 +24,19 @@ namespace Infrastructure.Mediator
             return handler.Handle(message, token);
         }
 
-        public Task<TResult> PublishAsync<TEvent, TResult>(TEvent @event, CancellationToken token = default)
-        {
-            var handler = _serviceProvider.GetRequiredService<IEventHandler<TEvent, TResult>>();
-            if (handler == null) throw new NullReferenceException($"handler of {nameof(TEvent)}");
-
-            return handler.Handle(@event, token);
-        }
 
         public Task<TResult> QueryAsync<TMessage, TResult>(TMessage message, CancellationToken token = default)
         {
             var handler = _serviceProvider.GetRequiredService<IQueryHandler<TMessage, TResult>>();
             if (handler == null) throw new NullReferenceException($"handler of {nameof(TMessage)}");
+
+            return handler.Handle(message, token);
+        }
+
+        public Task PublishAsync<TEvent>(TEvent message, CancellationToken token = default)
+        {
+            var handler = _serviceProvider.GetRequiredService<IEventHandler<TEvent>>();
+            if (handler == null) throw new NullReferenceException($"handler of {nameof(TEvent)}");
 
             return handler.Handle(message, token);
         }
