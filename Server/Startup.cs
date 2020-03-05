@@ -2,6 +2,7 @@ using System.Text;
 using AccountService;
 using Application;
 using Infrastructure;
+using Infrastructure.Mediator;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,7 @@ namespace Server
             services.RegisterApplication();
             services.RegisterAccountServices();
             services.RegisterInfrastructure(Configuration);
+            services.AddInProcessMessageBus();
 
             services.AddControllersWithViews()
                  .AddNewtonsoftJson(options =>

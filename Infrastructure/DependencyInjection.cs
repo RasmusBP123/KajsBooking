@@ -7,6 +7,7 @@ using Infrastructure.Identity;
 using System;
 using Microsoft.AspNetCore.Identity;
 using Domain.Entities;
+using Infrastructure.Mediator;
 
 namespace Infrastructure
 {

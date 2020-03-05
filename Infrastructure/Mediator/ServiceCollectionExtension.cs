@@ -1,4 +1,6 @@
 ﻿using Application;
+using Domain.ProductContext;
+using Infrastructure.Persistence.InMemory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
@@ -14,6 +16,8 @@ namespace Infrastructure.Mediator
         public static IServiceCollection AddInProcessMessageBus(this IServiceCollection services)
         {
             services.AddSingleton<IMediator, Mediator>();
+            services.AddScoped<IProductRepository, EventStoreProductRepository>();
+            services.AddSingleton<IEventStore, InMemoryEventStore>();
 
             var assemblies = new[]
             {

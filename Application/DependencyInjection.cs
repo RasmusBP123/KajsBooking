@@ -1,4 +1,5 @@
-﻿using Application.CommandUseCases.AttachTeachersToCalendar;
+﻿using Application.Commands.CreateProduct;
+using Application.CommandUseCases.AttachTeachersToCalendar;
 using Application.Common.Mappings;
 using Application.Dtos;
 using Application.Queries.GetAllCalendars;
@@ -53,6 +54,7 @@ namespace Application
             services.AddScoped<IRequestHandler<CreateCalendarCommand, bool>, CreateCalendarHandler>();
             services.AddScoped<IRequestHandler<AttachStudentToTeamCommand, bool>, AttachStudentToTeamHandler>();
             services.AddScoped<IRequestHandler<AttachTeachersToCalendarCommand, bool>, AttachTeachersToCalendarHandler>();
+            services.AddScoped<ICommandHandler<CreateProductCommand>, CreateProductHandler>();
         }
 
         private static void RegisterQueries(this IServiceCollection services)
